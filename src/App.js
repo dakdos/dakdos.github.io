@@ -1,30 +1,17 @@
+import React from 'react';
+import './App.module.scss';
+import BaseLayout from "./components/BaseLayout";
+import {BrowserRouter} from "react-router-dom";
 
-import React, {Component} from "react";
-
-class App extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      name : '',
-    };
-  }
-
-  setName = (ev) => {
-    let name = ev.target.value
-    this.setState({
-      name : name
-    });
-  }
-  
-  render() {
-    return (
+function App() {
+   return (
       <div>
-        <h1>{this.state.name}</h1>
-        <input onChange={this.setName}/>
+         <BrowserRouter>
+            <BaseLayout/>
+         </BrowserRouter>
       </div>
-    );
-  }
+   );
 }
+
 
 export default App;
