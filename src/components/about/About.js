@@ -10,10 +10,13 @@ export default function About() {
 
     function aboutMeText() {
         return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat
-                tentang{firstName} </p>
-            <p><span style={{color: info.baseColor}}>about {firstName} <span
-                className={Style.green}>(main)</span> $ </span>
+            <p>
+                <span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cat tentang{firstName} 
+            </p>
+            <p>
+                <span style={{color: info.baseColor}}>about {firstName} 
+                    <span className={Style.green}>(main)</span> $ 
+                </span>
                 {info.bio}
             </p>
         </>;
@@ -21,23 +24,31 @@ export default function About() {
 
     function skillsText() {
         return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
+            <p>
+                <span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
             </p>
-            <p><span style={{color: info.baseColor}}>skills/tools <span
-                className={Style.green}>(main)</span> $</span> ls</p>
+            <p>
+                <span style={{color: info.baseColor}}>skills/tools 
+                    <span className={Style.green}>(main)</span> $
+                </span> ls
+            </p>
             <p style={{color: info.baseColor}}> Sklil</p>
             <ul className={Style.skills}>
-                {info.skills.proficientWith.map((proficiency, index) => <li key={index}>{proficiency}</li>)}
+                {info.skills.map((proficiency, index) => <li key={index}>{proficiency.proficientWith}</li>)}
             </ul>
         </>;
     }
 
     function miscText() {
         return <>
-            <p><span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd
-                hobbies/interests</p>
-            <p><span style={{color: info.baseColor}}>hobbies/interests <span
-                className={Style.green}>(main)</span> $</span> ls</p>
+            <p>
+                <span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd hobbies/interests
+            </p>
+            <p>
+                <span style={{color: info.baseColor}}>hobbies/interests 
+                    <span className={Style.green}>(main)</span> $
+                </span> ls
+            </p>
             <ul>
                 {info.hobbies.map((hobby, index) => (
                     <li key={index}><Box component={'span'} mr={'1rem'}>{hobby.emoji}</Box>{hobby.label}</li>

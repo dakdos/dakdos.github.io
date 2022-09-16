@@ -60,11 +60,11 @@ export const info = {
         }
     ],
     bio: "Hai! Saya Fahmi.",
-    skills:
+    skills: [
         {
-            proficientWith: ['Web Development', 'Mobile Application Development', 'REST API', 'Flutter', 'CodeIgniter', 'PHP', 'HTML', 'CSS', 'MySQL', 'JavaScript', 'jQuery', 'Laravel', 'Linux', 'Bootstrap', 'GIT'],
+            'proficientWith' : 'Web Development'
         }
-    ,
+    ],
     hobbies: [
         {
             label: 'Coffee',
