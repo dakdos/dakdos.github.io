@@ -14,18 +14,18 @@ export const info = {
     firstName: "Fahmi",
     lastName: "",
     initials: "Dk", 
-    position: "Full Stack Software Engineer",
+    position: "Hai.! Saya seorang Web & Mobile developer",
     selfPortrait: self,
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, 
     baseColor: colors[0],
     miniBio: [
         {
             emoji: '🌎',
-            text: 'tinggal di Aceh'
+            text: 'Saya tinggal dibanda aceh'
         },
         {
             emoji: "💼",
-            text: "Full Stack Software Engineer di Klikdata Indonesia"
+            text: "Web & Mobile App di Klikdata Indonesia"
         },
         {
             emoji: "📧",
@@ -34,12 +34,12 @@ export const info = {
     ],
     socials: [
         {
-            link: "https://facebook.com",
+            link: "https://www.facebook.com/dakdos20",
             icon: 'fa fa-facebook',
             label: 'facebook'
         },
         {
-            link: "https://instagram.com",
+            link: "https://www.instagram.com/dakdos_",
             icon: 'fa fa-instagram',
             label: 'instagram'
         },
@@ -49,20 +49,45 @@ export const info = {
             label: 'github'
         },
         {
-            link: "https://linkedin.com",
+            link: "https://www.linkedin.com/in/zul-fahmi-253b90175/",
             icon: "fa fa-linkedin",
             label: 'linkedin'
-        },
-        {
-            link: "https://twitter.com",
-            icon: "fa fa-twitter",
-            label: 'twitter'
         }
     ],
-    bio: "Hai! Saya Fahmi.",
+    bio: "Saya seorang Web & Mobile developer yang selalu ingin mengembangkan keterampilan saya dibidang Programming.",
     skills: [
         {
-            'proficientWith' : 'Web Development'
+            'proficientWith' : 'Html'
+        }, {
+            'proficientWith' : 'Css'
+        }, {
+            'proficientWith' : 'Bootstrap'
+        }, {
+            'proficientWith' : 'Jquery'
+        }, {
+            'proficientWith' : 'Ajax'
+        }, {
+            'proficientWith' : 'Php'
+        }, {
+            'proficientWith' : 'Codeigniter'
+        }, {
+            'proficientWith' : 'Laravel'
+        }, {
+            'proficientWith' : 'Lumen'
+        }, {
+            'proficientWith' : 'Mysql/Mariadb'
+        }, {
+            'proficientWith' : 'Dart'
+        }, {
+            'proficientWith' : 'Fluter'
+        }, {
+            'proficientWith' : 'JavaScript'
+        }, {
+            'proficientWith' : 'Node.js'
+        }, {
+            'proficientWith' : 'Git'
+        }, {
+            'proficientWith' : 'Firebase'
         }
     ],
     hobbies: [
@@ -70,17 +95,21 @@ export const info = {
             label: 'Coffee',
             emoji: '☕'
         }, {
-            label: 'Coding and coding',
+            label: 'Coding',
+            emoji: '🧑‍💻' 
+        }, {
+            label: 'Coding',
             emoji: '🧑‍💻' 
         }
 
     ],
     portfolio: [
-        // {
-        //     title: "Project 1",
-        //     live: "https://paytonpierce.dev", //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
-        //     source: "https://github.com/paytonjewell", // this should be a link to the **repository** of the project, where the code is hosted.
-        //     image: mock1
-        // }
+        {
+            title: "Project 1",
+            live: "https://paytonpierce.dev", 
+            source: "https://github.com/paytonjewell",
+            image: ''
+            // image: mock1
+        }
     ]
 }

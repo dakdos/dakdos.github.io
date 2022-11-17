@@ -6,6 +6,7 @@ import {info} from "../../info/Info";
 
 
 export default function About() {
+    
     const firstName = info.firstName.toLowerCase()
 
     function aboutMeText() {
@@ -25,14 +26,14 @@ export default function About() {
     function skillsText() {
         return <>
             <p>
-                <span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills/tools
+                <span style={{color: info.baseColor}}>{firstName}{info.lastName.toLowerCase()} $</span> cd skills
             </p>
             <p>
-                <span style={{color: info.baseColor}}>skills/tools 
+                <span style={{color: info.baseColor}}>skills 
                     <span className={Style.green}>(main)</span> $
                 </span> ls
             </p>
-            <p style={{color: info.baseColor}}> Sklil</p>
+            <p style={{color: info.baseColor}}> </p>
             <ul className={Style.skills}>
                 {info.skills.map((proficiency, index) => <li key={index}>{proficiency.proficientWith}</li>)}
             </ul>

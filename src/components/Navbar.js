@@ -21,7 +21,8 @@ const links = [
         type: 'initials',
         to: '/',
         active: 'home'
-    },
+    }
+    ,
     {
         name: 'Portfolio',
         to: '/portfolio',
