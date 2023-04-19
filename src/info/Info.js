@@ -25,7 +25,7 @@ export const info = {
         },
         {
             emoji: "💼",
-            text: "Web & Mobile App di Klikdata Indonesia"
+            text: "Web & Mobile App"
         },
         {
             emoji: "📧",
