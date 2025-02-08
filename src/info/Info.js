@@ -14,7 +14,7 @@ export const info = {
     firstName: "Fahmi",
     lastName: "",
     initials: "Dk", 
-    position: "Saya seorang Web & Mobile developer",
+    position: "Saya adalah seorang Fullstack Web Developer dan Mobile App Developer",
     selfPortrait: self,
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, 
     baseColor: colors[0],
@@ -25,11 +25,11 @@ export const info = {
         },
         {
             emoji: "💼",
-            text: "Web & Mobile App"
+            text: "Fullstack Web Developer dan Mobile App Developer"
         },
         {
             emoji: "📧",
-            text: "zulfahmii051@gmail.com"
+            text: "zulfahmii2005@gmail.com"
         }
     ],
     socials: [
@@ -54,7 +54,12 @@ export const info = {
             label: 'linkedin'
         }
     ],
-    bio: "Saya seorang Web & Mobile developer yang selalu ingin mengembangkan keterampilan saya dibidang Programming.",
+    bio: `
+        Saya adalah seorang Fullstack Web Developer dan Mobile App Developer yang antusias untuk terus belajar dan mengembangkan keterampilan baru. 
+        Dengan pengalaman yang luas dalam berbagai teknologi dan bahasa pemrograman, 
+        saya mampu mengelola proyek dari tahap perencanaan hingga implementasi dan release.
+    `,
+
     skills: [
         {
             'proficientWith' : 'Html'
@@ -63,40 +68,58 @@ export const info = {
         }, {
             'proficientWith' : 'Bootstrap'
         }, {
-            'proficientWith' : 'Jquery'
+            'proficientWith' : 'JavaScript'
         }, {
-            'proficientWith' : 'Ajax'
+            'proficientWith' : '- Ajax'
+        }, {
+            'proficientWith' : '- Library (Jquery)'
+        } , {
+            'proficientWith' : '- Frontend (React.js)'
+        }, {
+            'proficientWith' : '- Backend (Node.js, Express.js)'
+        }, {
+            'proficientWith' : '- Full-Stack (Next.js)'
         }, {
             'proficientWith' : 'Php'
         }, {
-            'proficientWith' : 'Codeigniter'
+            'proficientWith' : '- Codeigniter'
         }, {
-            'proficientWith' : 'Laravel'
+            'proficientWith' : '- Laravel'
         }, {
-            'proficientWith' : 'Lumen'
+            'proficientWith' : '- Lumen'
         }, {
             'proficientWith' : 'Mysql/Mariadb'
         }, {
             'proficientWith' : 'Dart'
         }, {
-            'proficientWith' : 'Fluter'
+            'proficientWith' : 'Flutter'
         }, {
-            'proficientWith' : 'JavaScript'
+            'proficientWith' : '- Flutter widgets'
         }, {
-            'proficientWith' : 'Node.js'
+            'proficientWith' : '- Provider, Riverpod'
         }, {
-            'proficientWith' : 'Git'
+            'proficientWith' : '- Animations, transitions'
         }, {
-            'proficientWith' : 'Firebase'
-        }
+            'proficientWith' : '- SQLite, Hive, Shared Preferences'
+        }, {
+            'proficientWith' : '- Firebase'
+        }, {
+            'proficientWith' : '- RESTful APIs'
+        }, {
+            'proficientWith' : '- Custom UI designs'
+        }, {
+            'proficientWith' : '- Navigation and routing'
+        }, {
+            'proficientWith' : '- Responsive UI'
+        }, {
+            'proficientWith' : 'GitHub, GitLab'
+        },
     ],
+
     hobbies: [
         {
             label: 'Coffee',
             emoji: '☕'
-        }, {
-            label: 'Coding',
-            emoji: '🧑‍💻' 
         }, {
             label: 'Coding',
             emoji: '🧑‍💻' 

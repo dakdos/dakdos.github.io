@@ -1,12 +1,22 @@
 import React from 'react';
-import {Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
+
+const imageList = Array.from({ length: 24 }, (_, i) => `/images/${i + 2}.png`);
+
 export default function Portfolio() {
     return (
         <Box>
-            <Grid container display={'flex'} justifyContent={'center'}>
-                <object data="https://drive.google.com/file/d/181jYwKJCpskRkJpArtMnJojWKux3KnY-/preview" type="application/pdf" width="100%" height="950">
-                    <p>Alternative text - include a link <a href="https://drive.google.com/file/d/181jYwKJCpskRkJpArtMnJojWKux3KnY-/preview">to the PDF!</a></p>
-                </object>
+            <Grid container spacing={1} justifyContent="center">
+                {imageList.map((src, index) => (
+                    <Grid item key={index} mt={2}> {/* Tambah margin-top */}
+                        <img 
+                            src={src} 
+                            alt={`Portfolio ${index + 2}`}
+                            width="800"
+                            style={{ objectFit: 'cover', borderRadius: '8px' }}
+                        />
+                    </Grid>
+                ))}
             </Grid>
         </Box>
     );
