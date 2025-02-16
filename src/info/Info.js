@@ -74,7 +74,7 @@ export const info = {
         }, {
             'proficientWith' : '- Library (Jquery)'
         } , {
-            'proficientWith' : '- Frontend (Vue.js, React.js)'
+            'proficientWith' : '- Frontend (React.js)'
         }, {
             'proficientWith' : '- Backend (Node.js, Express.js)'
         }, {
