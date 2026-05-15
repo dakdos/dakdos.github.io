@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background-color: #09090b; /* zinc-950 */
+  color: #f4f4f5; /* zinc-100 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Custom styles from template */
+.nl {
+  @apply relative;
+}
+.nl::after {
+  content: '';
+  @apply absolute -bottom-[2px] left-0 w-0 h-[1.5px] bg-current transition-[width] duration-[0.22s] ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+.nl:hover::after, .nl.on::after {
+  @apply w-full;
+}
+.nl.on {
+  @apply font-medium;
+}
+
+.shimmer {
+  @apply relative overflow-hidden;
+}
+.shimmer::after {
+  content: '';
+  @apply absolute top-0 -left-full w-[60%] h-full bg-white/20 skew-x-[-20deg] transition-[left] duration-[0.4s] ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+.shimmer:hover::after {
+  @apply left-[160%];
+}
+
+.card-h {
+  @apply transition-[transform,border-color] duration-[0.28s,0.18s] ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+.card-h:hover {
+  @apply -translate-y-1;
+}
+
+.pf {
+  @apply overflow-hidden bg-zinc-300;
+}
+.pf img {
+  @apply w-full h-full object-cover block;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
