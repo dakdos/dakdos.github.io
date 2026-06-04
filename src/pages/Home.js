@@ -1,10 +1,10 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import Experience from '../components/Experience';
-import Work from '../components/Work';
-import About from '../components/About';
-import GitHubStats from '../components/GitHubStats';
-import Contact from '../components/Contact';
+import Hero from '../components/sections/Hero';
+import Experience from '../components/sections/Experience';
+import Work from '../components/sections/Work';
+import About from '../components/sections/About';
+import GitHubStats from '../components/sections/GitHubStats';
+import Contact from '../components/sections/Contact';
 
 export default function Home() {
   return (

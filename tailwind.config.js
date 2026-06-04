@@ -11,8 +11,8 @@ module.exports = {
         body: ['DM Sans','sans-serif'] 
       },
       colors: { 
-        accent: '#0066FF', 
-        'accent-light': '#3385FF' 
+        accent: '#DE3E3E', 
+        'accent-light': '#E95B5B' 
       }
     }
   },

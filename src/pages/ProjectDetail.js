@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { info } from '../info/Info';
+import { info } from '../data/info';
+import appStoreBadge from '../assets/images/apple.png';
+import playStoreBadge from '../assets/images/playstore.png';
 
 export default function ProjectDetail() {
   const { id } = useParams();
-  const project = info.portfolio.find(p => p.id === id);
+  const currentIndex = info.portfolio.findIndex(p => p.id === id);
+  const project = info.portfolio[currentIndex];
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
-  // Jika project.images belum ada di Info.js, kita buat array buatan (mengulang gambar) agar fungsi carousel bisa dites.
-  const images = project.images || [project.image, project.image, project.image];
+  // Get next project for the footer navigation
+  const nextProject = info.portfolio[(currentIndex + 1) % info.portfolio.length];
+
+  const images = project?.images || [project?.image];
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setCurrentImageIndex(0);
   }, [id]);
 
   const nextImage = () => {
@@ -33,149 +41,182 @@ export default function ProjectDetail() {
     );
   }
 
-  // Pisahkan deskripsi menjadi array kalimat untuk pura-pura dijadikan bullet point fitur jika data features tidak ada
   const dummyFeatures = project.description.split('. ').filter(s => s.length > 5).map(s => s + (s.endsWith('.') ? '' : '.'));
+  const isMobileMockup = project.type === 'mobile' && currentImageIndex !== 0;
 
   return (
-    <main className="min-h-screen bg-[#0a0a0c] relative text-zinc-300 font-sans pb-24">
-      {/* Subtle Background Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <main className="min-h-screen bg-[#070708] relative text-zinc-300 font-sans">
+      {/* Background Decorative Elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px]"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
+      </div>
 
-      <div className="max-w-6xl mx-auto px-6 pt-24 relative z-10">
+      <div className="max-w-5xl mx-auto px-6 pt-32 pb-24 relative z-10">
         
         {/* Back Button */}
-        <div className="mb-8">
-          <Link to="/#work" className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50 text-sm font-medium hover:bg-zinc-800 transition-colors text-zinc-300 hover:text-white">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-            Kembali ke Beranda
+        <div className="mb-12">
+          <Link to="/#work" className="inline-flex items-center gap-2 group text-zinc-500 hover:text-white transition-colors">
+            <span className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-800 group-hover:border-zinc-700 transition-colors">
+               <svg className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+            </span>
+            <span className="text-sm font-medium">Kembali ke Portofolio</span>
           </Link>
         </div>
 
-        {/* Hero Section Carousel */}
-        <div className={`relative w-full ${project.type === 'mobile' ? 'aspect-square md:aspect-[4/3] lg:aspect-[4/3]' : 'aspect-video md:aspect-[21/9]'} rounded-[2rem] overflow-hidden bg-zinc-900/40 border border-zinc-800/50 mb-8 flex items-center justify-center group shadow-2xl shadow-black/50`}>
-          {/* Background image remains the cover image */}
-          <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-40 transition-opacity duration-700 blur-sm scale-105" />
-          {/* Foreground carousel image */}
-          <img src={images[currentImageIndex]} alt={`${project.title} - ${currentImageIndex + 1}`} className="relative z-10 w-[85%] h-[85%] object-contain rounded-xl shadow-2xl drop-shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-transform duration-500" />
+        {/* Hero Header */}
+        <div className="mb-16">
+          <div className="flex flex-wrap gap-3 mb-6 justify-center">
+             <span className="px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+               {project.type} Case Study
+             </span>
+          </div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white text-center mb-10 leading-[1.1] tracking-tight">
+            {project.title}
+          </h1>
           
-          {/* Navigation Arrows */}
-          <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/50 text-white border border-white/10 hover:bg-black/80 hover:scale-110 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
-          </button>
-          <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/50 text-white border border-white/10 hover:bg-black/80 hover:scale-110 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
-          </button>
+          <div className="flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
+            {project.techStack?.map((tech, i) => (
+              <span key={i} className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-300 glass rounded-2xl hover:text-accent transition-colors">
+                <i className={`${tech.icon} text-lg`}></i>
+                {tech.name}
+              </span>
+            ))}
+          </div>
 
-          {/* Carousel Indicators */}
-          <div className="absolute bottom-6 inset-x-0 z-20 flex justify-center">
-            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/10">
+          {/* Store Buttons */}
+          {(project.appStore || project.playStore) && (
+            <div className="flex flex-wrap gap-4 justify-center mt-8">
+              {project.appStore && (
+                <a href={project.appStore} target="_blank" rel="noreferrer" className="transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 rounded-lg overflow-hidden">
+                  <img src={appStoreBadge} alt="Download on the App Store" className="h-8 w-auto" />
+                </a>
+              )}
+              {project.playStore && (
+                <a href={project.playStore} target="_blank" rel="noreferrer" className="transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 rounded-lg overflow-hidden">
+                  <img src={playStoreBadge} alt="Get it on Google Play" className="h-8 w-auto" />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Cinematic Showcase Section */}
+        <div className="relative mb-24">
+          <div className={`relative w-full ${project.type === 'mobile' ? 'aspect-[4/3]' : 'aspect-video'} rounded-[2.5rem] overflow-hidden bg-zinc-900/20 border border-white/5 flex items-center justify-center group`}>
+            {/* Ambient Background Blur */}
+            <div className="absolute inset-0 z-0">
+               <img src={project.image} alt="" className="w-full h-full object-cover blur-xl opacity-50 group-hover:opacity-40 transition-all duration-700 scale-110" />
+               <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+
+            {/* Mockup Container */}
+            <div className={`relative z-10 w-full h-full flex items-center justify-center p-6 md:p-12`}>
+               <div className={`relative cursor-zoom-in group/img flex items-center justify-center ${isMobileMockup ? 'max-w-full h-[95%]' : 'w-full h-full'}`} onClick={() => setIsZoomed(true)}>
+                  <img 
+                    src={images[currentImageIndex]} 
+                    alt={project.title} 
+                    className={`${isMobileMockup ? 'max-w-full h-full object-contain' : 'w-full h-full object-cover object-top'} rounded-2xl shadow-[0_32px_64px_-15px_rgba(0,0,0,0.6)] border border-white/10 transition-transform duration-500 group-hover/img:scale-[1.02]`}
+                  />
+                  
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/img:bg-black/20 transition-all opacity-0 group-hover/img:opacity-100 rounded-2xl">
+                     <span className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-[10px] font-bold text-white uppercase tracking-widest">Click to Zoom</span>
+                  </div>
+               </div>
+            </div>
+
+            {/* Navigation Overlays */}
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-6 z-30 opacity-0 group-hover:opacity-100 transition-opacity">
+              <button onClick={(e) => { e.stopPropagation(); prevImage(); }} className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-accent transition-all">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button onClick={(e) => { e.stopPropagation(); nextImage(); }} className="w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-accent transition-all">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+            {/* Dot Indicators */}
+            <div className="absolute bottom-8 inset-x-0 z-30 flex justify-center gap-2">
               {images.map((_, idx) => (
                 <button 
                   key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${currentImageIndex === idx ? 'w-6 bg-accent' : 'w-2 bg-zinc-400 hover:bg-white'}`}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${currentImageIndex === idx ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40'}`}
                 />
               ))}
             </div>
           </div>
         </div>
 
-        {/* Title Container (Terpisah dari Gambar) */}
-        <div className="mb-12 text-center md:text-left">
-          <div className="inline-block px-3 py-1 rounded-full border border-zinc-700/50 bg-zinc-800/30 text-[10px] uppercase tracking-widest text-zinc-400 mb-4 font-semibold">
-            Detailed Case Study
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6">
-            {project.title}
-          </h1>
-          {project.techStack && (
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-              {project.techStack.map((tech, i) => (
-                <span key={i} className="px-3 py-1.5 text-sm font-medium text-accent bg-accent/10 border border-accent/20 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        {/* Content Section */}
+        <div className="max-w-4xl mx-auto space-y-12">
           
-          {/* Left Column (Overview & Features) */}
-          <div className="lg:col-span-2 space-y-8">
-            
-            {/* Overview Card */}
-            <section className="bg-[#121214] border border-zinc-800/60 rounded-3xl p-8 md:p-10 shadow-xl">
-              <h2 className="text-xs font-bold tracking-widest text-orange-400/80 uppercase mb-6 pb-4 border-b border-zinc-800">
-                Overview
-              </h2>
-              <div className="prose prose-invert prose-zinc max-w-none text-zinc-400 leading-loose text-[15px]">
-                <p>{project.description}</p>
-              </div>
-            </section>
+          <div className="grid md:grid-cols-5 gap-12">
+             {/* Left: Overview */}
+             <div className="md:col-span-3 space-y-8">
+                <section>
+                  <h2 className="text-xs font-bold tracking-[0.2em] text-accent uppercase mb-6 flex items-center gap-3">
+                    <span className="w-8 h-px bg-accent/30"></span>
+                    Overview
+                  </h2>
+                  <div className="text-lg text-zinc-400 leading-relaxed font-light">
+                    <p>{project.description}</p>
+                  </div>
+                </section>
+             </div>
 
-            {/* Features Card */}
-            <section className="bg-[#121214] border border-zinc-800/60 rounded-3xl p-8 md:p-10 shadow-xl">
-              <h2 className="text-xs font-bold tracking-widest text-orange-400/80 uppercase mb-6 pb-4 border-b border-zinc-800">
-                Features & Tech
-              </h2>
-              <ul className="space-y-5">
-                {dummyFeatures.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-4 text-[15px] text-zinc-400 leading-relaxed">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-orange-500/50 shrink-0 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-          </div>
-
-          {/* Right Column (Project Info & Buttons) */}
-          <div className="space-y-6">
-            
-            {/* Project Info Card */}
-            <div className="bg-[#121214] border border-zinc-800/60 rounded-3xl p-8 shadow-xl sticky top-24">
-              <h3 className="text-white font-bold mb-6">Project Info</h3>
-              
-              <div className="space-y-5">
-                <div>
-                  <p className="text-xs text-accent/70 font-medium mb-1">Date</p>
-                  <p className="text-sm text-zinc-300 font-medium">2024</p>
+             {/* Right: Features List */}
+             <div className="md:col-span-2">
+                <div className="glass rounded-[2rem] p-8 space-y-6">
+                  <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">Core Features</h3>
+                  <ul className="space-y-4">
+                    {dummyFeatures.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm text-zinc-400 group">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent/40 group-hover:bg-accent transition-colors shrink-0"></span>
+                        <span className="leading-relaxed group-hover:text-zinc-200 transition-colors">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div>
-                  <p className="text-xs text-accent/70 font-medium mb-1">Role</p>
-                  <p className="text-sm text-zinc-300 font-medium">Lead Developer</p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-zinc-800 space-y-3">
-                <a 
-                  href={project.source} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-sm font-medium text-white hover:bg-zinc-700 hover:border-zinc-600 transition-all group"
-                >
-                  <svg className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" /></svg>
-                  Lihat Kode Sumber
-                </a>
-                <a 
-                  href={project.live} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-accent/10 border border-accent/20 text-sm font-medium text-accent hover:bg-accent hover:text-white transition-all"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                  Buka Demo Langsung
-                </a>
-              </div>
-            </div>
-
+             </div>
           </div>
         </div>
+
+        {/* Footer Navigation */}
+        <div className="mt-40 pt-16 border-t border-zinc-900">
+           <p className="text-center text-xs font-bold tracking-[0.3em] text-zinc-600 uppercase mb-8">Berikutnya</p>
+           <Link to={`/project/${nextProject.id}`} className="group block text-center">
+              <h4 className="text-3xl md:text-5xl font-display font-bold text-zinc-700 group-hover:text-white transition-all duration-500 mb-6">
+                 {nextProject.title}
+              </h4>
+              <div className="inline-flex items-center gap-2 text-accent font-bold text-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                 Lihat Proyek Ini <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+           </Link>
+        </div>
+
       </div>
+
+      {/* Full Screen Zoom Modal */}
+      {isZoomed && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setIsZoomed(false)}
+        >
+          <button 
+            className="absolute top-8 right-8 text-white/50 hover:text-white p-2"
+            onClick={() => setIsZoomed(false)}
+          >
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+          <img 
+            src={images[currentImageIndex]} 
+            alt={project.title} 
+            className="max-w-full max-h-full object-contain rounded-xl shadow-2xl animate-in fade-in zoom-in duration-300"
+          />
+        </div>
+      )}
     </main>
   );
 }
