@@ -9,12 +9,12 @@ const importAll = (r) => {
         });
 };
 
-const simrsImages = importAll(require.context('../assets/images/simrs', false, /\.(png|jpe?g|svg)$/));
-const jualakuImages = importAll(require.context('../assets/images/jualaku', false, /\.(png|jpe?g|svg)$/));
-const klikpasienImages = importAll(require.context('../assets/images/klikpasien', false, /\.(png|jpe?g|svg)$/));
-const klikpasienDoctorImages = importAll(require.context('../assets/images/klikpasien_doctor', false, /\.(png|jpe?g|svg)$/));
-const simonaImages = importAll(require.context('../assets/images/simona', false, /\.(png|jpe?g|svg)$/));
-const webProfilRsImages = importAll(require.context('../assets/images/web-profil-rs', false, /\.(png|jpe?g|svg)$/));
+const simrsImages = importAll(require.context('../assets/images/simrs', false, /\.(png|jpe?g|svg|webp)$/));
+const jualakuImages = importAll(require.context('../assets/images/jualaku', false, /\.(png|jpe?g|svg|webp)$/));
+const klikpasienImages = importAll(require.context('../assets/images/klikpasien', false, /\.(png|jpe?g|svg|webp)$/));
+const klikpasienDoctorImages = importAll(require.context('../assets/images/klikpasien_doctor', false, /\.(png|jpe?g|svg|webp)$/));
+const simonaImages = importAll(require.context('../assets/images/simona', false, /\.(png|jpe?g|svg|webp)$/));
+const webProfilRsImages = importAll(require.context('../assets/images/web-profil-rs', false, /\.(png|jpe?g|svg|webp)$/));
 
 export let colors = ["#DE3E3E", "#E95B5B"];
 
