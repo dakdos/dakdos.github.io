@@ -101,9 +101,9 @@ export default function GitHubStats() {
 
   if (error) {
     return (
-      <section className="py-24 bg-zinc-950">
+      <section className="py-24 bg-black">
         <div className="max-w-[1440px] mx-auto px-6">
-          <div className="p-12 bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] text-center">
+          <div className="p-12 bg-[#0a0a0a] border border-white/5 rounded-2xl text-center">
             <p className="text-zinc-500 mb-4">Gagal memuat riwayat GitHub. Silakan coba lagi nanti.</p>
             <button 
               onClick={() => window.location.reload()}
@@ -118,9 +118,9 @@ export default function GitHubStats() {
   }
 
   return (
-    <section className="py-24 bg-zinc-950">
+    <section className="py-24 bg-black">
       <div className="max-w-[1440px] mx-auto px-6">
-        <div className="reveal p-8 md:p-12 bg-zinc-900/50 border border-zinc-800 rounded-[2.5rem] overflow-hidden min-h-[450px] flex flex-col">
+        <div className="reveal p-8 md:p-12 bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden min-h-[450px] flex flex-col">
           {loading ? (
             <div className="flex-1 flex items-center justify-center">
               <div className="w-10 h-10 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
@@ -129,9 +129,9 @@ export default function GitHubStats() {
             <>
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                 <div>
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase mb-2 block">Developer Activity</span>
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Live Contribution History</h2>
-                  <p className="text-zinc-500 text-sm max-w-xl leading-relaxed">
+                  <span className="text-[10px] font-mono font-medium tracking-[0.2em] text-accent uppercase mb-2 block">Developer Activity</span>
+                  <h2 className="text-2xl md:text-3xl font-sans font-semibold text-white mb-4">Live Contribution History</h2>
+                  <p className="text-zinc-500 font-sans font-normal text-sm max-w-xl leading-relaxed">
                     Menampilkan seluruh riwayat aktivitas GitHub saya sejak tahun {Math.min(...(processedData?.availableYears || [2020]))}. 
                     Data ini ditarik langsung dan bersifat dinamis.
                   </p>
@@ -141,7 +141,7 @@ export default function GitHubStats() {
                   <select 
                     value={selectedYear} 
                     onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                    className="appearance-none bg-zinc-950 border border-zinc-800 text-white text-xs font-bold py-2 px-6 pr-10 rounded-xl focus:outline-none focus:border-accent transition-colors cursor-pointer"
+                    className="appearance-none bg-[#111] border border-white/5 text-white text-xs font-sans font-semibold py-2 px-6 pr-10 rounded-lg focus:outline-none focus:border-accent transition-colors cursor-pointer"
                   >
                     {processedData?.availableYears.map(year => (
                       <option key={year} value={year}>{year}</option>
@@ -157,12 +157,12 @@ export default function GitHubStats() {
 
               <div className="grid lg:grid-cols-3 gap-8 items-stretch">
                 {/* Heatmap Grid */}
-                <div className="lg:col-span-2 p-6 bg-zinc-950/50 border border-white/5 rounded-2xl overflow-x-auto">
+                <div className="lg:col-span-2 p-6 bg-[#111] border border-white/5 rounded-2xl overflow-x-auto">
                   <div className="min-w-[750px]">
                     <div className="flex justify-between items-center mb-6">
                        <div className="flex flex-col">
-                         <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-1">GitHub Heatmap</span>
-                         <span className="text-[10px] text-accent font-bold uppercase">Year {selectedYear}</span>
+                         <span className="text-[10px] font-mono font-medium text-zinc-600 uppercase tracking-widest mb-1">GitHub Heatmap</span>
+                         <span className="text-[10px] text-accent font-mono font-medium uppercase">Year {selectedYear}</span>
                        </div>
                        <div className="flex items-center gap-2">
                          <span className="text-[10px] text-zinc-500">Less</span>
@@ -209,14 +209,13 @@ export default function GitHubStats() {
                 </div>
 
                 {/* Stats Side Card */}
-                <div className="p-8 bg-zinc-950/80 border border-white/10 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-accent/10 transition-colors"></div>
+                <div className="p-8 bg-[#111] border border-white/5 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
                   
                   <div className="space-y-10 relative z-10">
                     <div>
-                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Yearly Summary</p>
+                      <p className="text-[10px] font-mono font-medium text-zinc-500 uppercase tracking-widest mb-4">Yearly Summary</p>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-4xl font-bold text-white">{processedData?.totalForYear || 0}</span>
+                        <span className="text-4xl font-sans font-bold text-white">{processedData?.totalForYear || 0}</span>
                         <span className="text-xs text-zinc-500">Contributions</span>
                       </div>
                     </div>
@@ -235,19 +234,19 @@ export default function GitHubStats() {
                           />
                         </svg>
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                          <span className="text-lg font-bold text-white leading-none">{processedData?.currentStreak || 0}</span>
+                          <span className="text-lg font-sans font-bold text-white leading-none">{processedData?.currentStreak || 0}</span>
                         </div>
                       </div>
                       <div>
-                        <p className="text-accent font-bold text-xs uppercase tracking-wider mb-1">Current Streak</p>
+                        <p className="text-accent font-mono font-medium text-xs uppercase tracking-wider mb-1">Current Streak</p>
                         <p className="text-[10px] text-zinc-500">Days consistent</p>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-4">Longest Streak</p>
+                      <p className="text-[10px] font-mono font-medium text-zinc-500 uppercase tracking-widest mb-4">Longest Streak</p>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-bold text-white">{processedData?.longestStreak || 0}</span>
+                        <span className="text-3xl font-sans font-bold text-white">{processedData?.longestStreak || 0}</span>
                         <span className="text-xs text-zinc-500">Days milestone</span>
                       </div>
                     </div>

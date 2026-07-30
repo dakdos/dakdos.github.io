@@ -32,7 +32,7 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <main className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6 bg-[#0a0a0c]">
+      <main className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6 bg-black">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4 text-white">Proyek tidak ditemukan</h1>
           <Link to="/" className="text-accent hover:underline">Kembali ke Beranda</Link>
@@ -45,13 +45,7 @@ export default function ProjectDetail() {
   const isMobileMockup = project.type === 'mobile' && currentImageIndex !== 0;
 
   return (
-    <main className="min-h-screen bg-[#070708] relative text-zinc-300 font-sans">
-      {/* Background Decorative Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent/10 rounded-full blur-[150px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px]"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]"></div>
-      </div>
+    <main className="min-h-screen bg-black relative text-zinc-300 font-sans">
 
       <div className="max-w-5xl mx-auto px-6 pt-32 pb-24 relative z-10">
         
@@ -61,25 +55,25 @@ export default function ProjectDetail() {
             <span className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-800 group-hover:border-zinc-700 transition-colors">
                <svg className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
             </span>
-            <span className="text-sm font-medium">Kembali ke Portofolio</span>
+            <span className="text-base font-sans font-medium">Kembali ke Portofolio</span>
           </Link>
         </div>
 
         {/* Hero Header */}
         <div className="mb-16">
           <div className="flex flex-wrap gap-3 mb-6 justify-center">
-             <span className="px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+             <span className="text-xs uppercase tracking-widest text-zinc-500 font-mono font-medium">
                {project.type} Case Study
              </span>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white text-center mb-10 leading-[1.1] tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-sans font-bold text-white text-center mb-10 leading-[1.1] tracking-tight">
             {project.title}
           </h1>
           
-          <div className="flex flex-wrap gap-2 justify-center max-w-2xl mx-auto">
+          <div className="flex flex-wrap gap-4 md:gap-6 justify-center max-w-2xl mx-auto">
             {project.techStack?.map((tech, i) => (
-              <span key={i} className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-zinc-300 glass rounded-2xl hover:text-accent transition-colors">
-                <i className={`${tech.icon} text-lg`}></i>
+              <span key={i} className="flex items-center gap-2 text-base font-sans font-medium text-zinc-400 hover:text-white transition-colors">
+                <i className={`${tech.icon} text-xl`}></i>
                 {tech.name}
               </span>
             ))}
@@ -104,7 +98,7 @@ export default function ProjectDetail() {
 
         {/* Cinematic Showcase Section */}
         <div className="relative mb-24">
-          <div className={`relative w-full ${project.type === 'mobile' ? 'aspect-[4/3]' : 'aspect-video'} rounded-[2.5rem] overflow-hidden bg-zinc-900/20 border border-white/5 flex items-center justify-center group`}>
+          <div className={`relative w-full ${project.type === 'mobile' ? 'aspect-[4/3]' : 'aspect-video'} rounded-2xl overflow-hidden bg-[#0a0a0a] border border-white/5 flex items-center justify-center group`}>
             {/* Ambient Background Blur */}
             <div className="absolute inset-0 z-0">
                <img src={project.image} alt="" className="w-full h-full object-cover blur-xl opacity-50 group-hover:opacity-40 transition-all duration-700 scale-110" />
@@ -156,11 +150,11 @@ export default function ProjectDetail() {
              {/* Left: Overview */}
              <div className="md:col-span-3 space-y-8">
                 <section>
-                  <h2 className="text-xs font-bold tracking-[0.2em] text-accent uppercase mb-6 flex items-center gap-3">
+                  <h2 className="text-sm font-mono font-medium tracking-[0.2em] text-accent uppercase mb-6 flex items-center gap-3">
                     <span className="w-8 h-px bg-accent/30"></span>
                     Overview
                   </h2>
-                  <div className="text-lg text-zinc-400 leading-relaxed font-light">
+                  <div className="text-xl font-sans font-normal text-zinc-400 leading-relaxed">
                     <p>{project.description}</p>
                   </div>
                 </section>
@@ -168,11 +162,11 @@ export default function ProjectDetail() {
 
              {/* Right: Features List */}
              <div className="md:col-span-2">
-                <div className="glass rounded-[2rem] p-8 space-y-6">
-                  <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-4">Core Features</h3>
-                  <ul className="space-y-4">
+                <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-8 space-y-6">
+                  <h3 className="text-xl font-sans font-semibold text-white uppercase tracking-widest mb-4">Core Features</h3>
+                  <ul className="space-y-5">
                     {dummyFeatures.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3 text-sm text-zinc-400 group">
+                      <li key={idx} className="flex items-start gap-4 text-lg font-sans font-normal text-zinc-400 group leading-relaxed">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent/40 group-hover:bg-accent transition-colors shrink-0"></span>
                         <span className="leading-relaxed group-hover:text-zinc-200 transition-colors">{feature}</span>
                       </li>
@@ -185,12 +179,12 @@ export default function ProjectDetail() {
 
         {/* Footer Navigation */}
         <div className="mt-40 pt-16 border-t border-zinc-900">
-           <p className="text-center text-xs font-bold tracking-[0.3em] text-zinc-600 uppercase mb-8">Berikutnya</p>
+           <p className="text-center text-sm font-mono font-medium tracking-[0.3em] text-zinc-600 uppercase mb-8">Berikutnya</p>
            <Link to={`/project/${nextProject.id}`} className="group block text-center">
-              <h4 className="text-3xl md:text-5xl font-display font-bold text-zinc-700 group-hover:text-white transition-all duration-500 mb-6">
+              <h4 className="text-4xl md:text-6xl font-sans font-bold text-zinc-700 group-hover:text-white transition-all duration-500 mb-6">
                  {nextProject.title}
               </h4>
-              <div className="inline-flex items-center gap-2 text-accent font-bold text-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+              <div className="inline-flex items-center gap-2 text-accent font-sans font-semibold text-base opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                  Lihat Proyek Ini <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
               </div>
            </Link>

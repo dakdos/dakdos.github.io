@@ -5,7 +5,8 @@
 @layer base {
   html, body {
   margin: 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem; /* Set base font size to 14px */
   background-color: #09090b; /* zinc-950 */
   color: #f4f4f5; /* zinc-100 */
   -webkit-font-smoothing: antialiased;
@@ -92,5 +93,6 @@
 .text-gradient {
   background: linear-gradient(to right, #ffffff, #a1a1aa);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
